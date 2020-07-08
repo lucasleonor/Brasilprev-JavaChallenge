@@ -1,4 +1,4 @@
-package br.com.brasilprev.teste.JavaChallenge;
+package br.com.brasilprev.teste.javachallenge;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

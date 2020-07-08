@@ -1,13 +1,9 @@
-package br.com.brasilprev.teste.JavaChallenge.models;
+package br.com.brasilprev.teste.javachallenge.model;
 
-import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -25,30 +21,36 @@ class BasketTest {
         product = new Product();
 
         productAmount = new Random().nextInt();
-        Map<Product, Integer> productMap = new HashMap<>(Collections.singletonMap(product, productAmount));
-        basket.setProducts(productMap);
+        Set<BasketItem> products = new HashSet<>(Collections.singleton(new BasketItem(product, productAmount)));
+        basket.setProducts(products);
+    }
+
+    @Test
+    void findProduct() {
+        BasketItem basketItem = basket.findProduct(this.product);
+        assertThat(basketItem.getProduct(), is(product));
     }
 
     @Test
     void addProduct() {
         basket.addProduct(product);
-        assertThat(basket.getProducts().get(product), is(productAmount + 1));
+        assertThat(basket.findProduct(product).getAmount(), is(productAmount + 1));
 
-        basket.setProducts(new HashMap<>());
+        basket.setProducts(new HashSet<>());
         basket.addProduct(product);
-        assertThat(basket.getProducts().get(product), is(1));
+        assertThat(basket.findProduct(product).getAmount(), is(1));
     }
 
     @Test
     void updateProductAmount() {
         int newProductAmount = new Random().nextInt();
         basket.updateProductAmount(product, newProductAmount);
-        assertThat(basket.getProducts().get(product), is(newProductAmount));
+        assertThat(basket.findProduct(product).getAmount(), is(newProductAmount));
     }
 
     @Test
     void removeProduct() {
         basket.removeProduct(product);
-        assertThat(basket.getProducts().get(product), is(nullValue()));
+        assertThat(basket.findProduct(product), is(nullValue()));
     }
 }

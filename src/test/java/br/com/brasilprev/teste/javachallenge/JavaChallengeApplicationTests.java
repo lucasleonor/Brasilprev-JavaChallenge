@@ -1,4 +1,4 @@
-package br.com.brasilprev.teste.JavaChallenge;
+package br.com.brasilprev.teste.javachallenge;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
