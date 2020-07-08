@@ -28,6 +28,9 @@ public class BasketItem {
     }
 
     public void addProduct() {
+        if (amount == null){
+            amount = 0;
+        }
         amount++;
     }
 }
