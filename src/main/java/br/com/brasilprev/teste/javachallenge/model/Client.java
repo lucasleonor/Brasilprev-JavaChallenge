@@ -22,4 +22,6 @@ public class Client implements Serializable {
     private String name;
     @Column(name = "document")
     private String document; //CPF/RG/CNPJ
+    @Column(name = "active")
+    private boolean active;
 }
