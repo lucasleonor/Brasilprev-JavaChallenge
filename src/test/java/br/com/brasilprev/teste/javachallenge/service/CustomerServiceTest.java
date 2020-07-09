@@ -59,15 +59,18 @@ class CustomerServiceTest {
 
     @Test
     void registerCustomer() {
-        when(dao.save(new Customer())).thenReturn(customer);
+        Customer activeCustomer = new Customer();
+        activeCustomer.setActive(true);
+        when(dao.save(activeCustomer)).thenReturn(customer);
         assertThat(service.registerCustomer(new Customer()), is(customer));
-        verify(dao, times(1)).save(new Customer());
+        verify(dao, times(1)).save(activeCustomer);
     }
 
     @Test
     void updateCustomer() {
         Customer customerWithId = new Customer();
         customerWithId.setId(id);
+        customerWithId.setActive(true);
         when(dao.findById(id)).thenReturn(Optional.of(customer));
         when(dao.save(customerWithId)).thenReturn(customer);
         assertThat(service.updateCustomer(id, new Customer()), is(customer));
