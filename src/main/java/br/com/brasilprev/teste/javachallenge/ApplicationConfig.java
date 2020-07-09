@@ -38,19 +38,19 @@ public class ApplicationConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build()
-                .apiInfo(apiInfo())
-                .useDefaultResponseMessages(false);
+          .select()
+          .apis(RequestHandlerSelectors.any())
+          .paths(PathSelectors.any())
+          .build()
+          .apiInfo(apiInfo())
+          .useDefaultResponseMessages(false);
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Online Store - Java Challenge")
-                .description("REST API for a virtual store that features Clients, Products and Orders")
-                .version("1.0")
-                .build();
+          .title("Online Store - Java Challenge")
+          .description("REST API for a virtual store that features Clients, Products and Orders")
+          .version("1.0")
+          .build();
     }
 }
